@@ -53,13 +53,13 @@ class Zomato:
 
 		if method == 'GET':
 			url = url + '?' + urllib.urlencode(params)
-			req = urllib2.Request(url)
+			request = urllib2.Request(url)
 		else:
-			req = urllib2.Request(url, urllib.urlencode(params))
+			request = urllib2.Request(url, urllib.urlencode(params))
 
-		req.add_header('X-Zomato-API-Key', self.key)
+		request.add_header('X-Zomato-API-Key', self.key)
 		for header, value in headers.iteritems():
-			req.add_header(header, value)
+			request.add_header(header, value)
 
-		r = urllib2.urlopen(req)
-		return r.read()
+		response = urllib2.urlopen(request)
+		return response.read()
