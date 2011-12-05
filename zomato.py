@@ -1,13 +1,9 @@
 import httplib, urllib, urllib2
 
 class Zomato:
-	def __init__(self, key, base_url=''):
+	def __init__(self, key, base_url='https://api.zomato.com/v1/'):
 		self.key = key
-
-		if base_url != '':
-			self.base_url = base_url
-		else:
-			self.base_url = 'https://api.zomato.com/v1/'
+		self.base_url = base_url
 
 	def request(self, call, method='GET', params={}, headers={}):
 		url = '%s%s' % (self.base_url, call)
