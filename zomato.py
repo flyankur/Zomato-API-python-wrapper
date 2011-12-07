@@ -1,4 +1,4 @@
-import httplib, urllib, urllib2
+import httplib, urllib, urllib2, json
 
 class Zomato:
 	'''
@@ -62,4 +62,22 @@ class Zomato:
 			request.add_header(header, value)
 
 		response = urllib2.urlopen(request)
-		return response.read()
+		self.response = response.read()
+
+		return self.parse(call)
+
+	def parse(self, call):
+		method = call.split('.')
+		method = method[1]
+
+		data = self.response
+
+		if method == 'json':
+			data = self.json_parse()
+
+		return data
+
+	def json_parse(self):
+		json_data = json.loads(self.response)
+
+		return json_data
