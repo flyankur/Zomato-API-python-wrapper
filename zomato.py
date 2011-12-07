@@ -18,11 +18,17 @@ class Zomato:
 	Function to make API call.
 
 	Parameters:
-		call									- API call to be made
-		method (optional)			- method to be used for making the HTTP request.
-														Defaults to GET.
-		params (optional)			- parameters to be sent with the request
-		headers	(optional)		- extra headers to be sent with the request
+		call                  - API call to be made
+		method (optional)     - method to be used for making the HTTP request.
+		                        Defaults to GET.
+		params (optional)     - parameters to be sent with the request
+		headers	(optional)    - extra headers to be sent with the request
+
+	Returns:
+		Response to the call. If the call requested response in XML, then the
+		response is returned as it is as a string. If the call requested
+		response in JSON, then the response is parsed into a dictionary and 
+		the dictionary is returned.
 
 	Example:
 		To get a List of Cuisines, you will make the following call:
@@ -66,6 +72,17 @@ class Zomato:
 
 		return self.parse(call)
 
+	'''
+	Parses the response.
+
+	Parameters:
+		call              - (string) call parameter passed to the request method.
+
+	Returns:
+		XML response string if the call requested XML data. Dictionary if the call
+		requested JSON data. The JSON response is parsed into a dictionary and the
+		dictionary object is returned.
+	'''
 	def parse(self, call):
 		method = call.split('.')
 		method = method[1]
@@ -77,6 +94,12 @@ class Zomato:
 
 		return data
 
+	'''
+	Parses JSON response into a dictionary.
+
+	Returns:
+		Dictionary object with the JSON response parsed into it.
+	'''
 	def json_parse(self):
 		json_data = json.loads(self.response)
 
