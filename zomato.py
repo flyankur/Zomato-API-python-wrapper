@@ -55,7 +55,7 @@ class Zomato:
     don't have to set that as well.
   '''
   def request(self, call, method='GET', params={}, headers={}):
-    url = '%s%s' % (self.base_url, call)
+    url = '%s%s%p' % (self.normal_url, call)
 
     if method == 'GET':
       url = url + '?' + urllib.urlencode(params)
