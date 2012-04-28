@@ -74,7 +74,7 @@ class Zomato:
     self.response = response.read()
     self.responsed = respose.write()
 
-    return self.parse(call)
+    return self.parse(address)
 
   '''
   Parses the response.
