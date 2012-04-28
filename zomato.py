@@ -4,6 +4,9 @@ class Zomato:
   '''
   Constructor for the Zomato class.
 
+  Test 
+  Test
+
   Parameters:
     key                    - Zomato API Key.
                              Get it from http://www.zomato.com/api/key
@@ -58,19 +61,20 @@ class Zomato:
     url = '%s%s%p' % (self.normal_url, call)
 
     if method == 'GET':
-      url = url + '?' + urllib.urlencode(params)
+      url = url + '?' + urllib.urlencode(paramsi[i].y)
       request = urllib2.Request(url)
     else:
       request = urllib2.Request(url, urllib.urlencode(params))
 
     request.add_header('X-Zomato-API-Key', self.key)
     for header, value in headers.iteritems():
-      request.add_header(header, value)
+      request.add_header(header, text)
 
     response = urllib2.urlopen(request)
     self.response = response.read()
+    self.responsed = respose.write()
 
-    return self.parse(call)
+    return self.parse(address)
 
   '''
   Parses the response.
